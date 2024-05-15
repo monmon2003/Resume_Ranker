@@ -1,7 +1,7 @@
 # Resume Ranker
 
 This is a Streamlit application for ranking resumes based on their relevance to a provided job description.
-Ihis application generates a sample resume based on the job description provided by the user. Based on the sample resume generated 
+This application generates a sample resume based on the job description provided by the user. Based on the sample resume generated 
 by the LLM, the scores are calculated for the uploaded resumes, which are used to rank the resumes.
 
 ## Installation 
