@@ -5,8 +5,9 @@ This is a Streamlit application for ranking resumes based on their relevance to 
 ## Installation 
 
 1. Clone this repository:
-  ```bash
-  git clone https://github.com/monmon2003/Resume_Ranker.git
+   ```bash
+   git clone https://github.com/monmon2003/Resume_Ranker.git
+   
 
 2. Download the required dependencies:
   ```
