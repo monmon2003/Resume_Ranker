@@ -4,6 +4,8 @@ import os
 import PyPDF2 as pdf
 from dotenv import load_dotenv
 import re
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 
@@ -45,11 +47,6 @@ experience: ML engineer intern, software engineer
 
 """
 
-
-
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
 def get_score(resume, keywords):
     text = [resume, keywords]
     cv = CountVectorizer()
@@ -79,8 +76,6 @@ if submit:
             scores.append((uploaded_file.name, score))
         
         sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
-        # st.subheader(response)
-
         st.subheader("Ranking of Resumes:")
         for rank, (filename, score) in enumerate(sorted_scores, start=1):
             st.write(f"{rank}. {filename} - Score: {score}")
