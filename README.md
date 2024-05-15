@@ -22,7 +22,7 @@ GOOGLE_API_KEY=your_api_key_here
 ## Usage
 1. Run the Streamlit application:
     ```bash
-    streamlit run app.py
+    streamlit run app1.py
 2. Input the job description text in the provided text area.
 
 3. Upload the resumes in PDF format using the file uploader.
