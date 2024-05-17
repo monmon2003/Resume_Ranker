@@ -4,6 +4,9 @@ import os
 import PyPDF2 as pdf
 from dotenv import load_dotenv
 import re
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 load_dotenv()
 
@@ -26,31 +29,56 @@ def input_pdf_text(uploaded_file):
 
 
 input_prompt = """
-job description = {jd}
-Create a resume which will be ideal for the given job description.
-The resume should consist of the following sections:
+Given the following job description:
 
-Education
+{jd}
 
-Skills
+Create an ideal resume for this job description. The resume should follow this exact format:
 
-Experience
+---
 
-Create hypothetical names for university, add some graduation year for example: 2025
-example output:
+**Name:** [Your Name Here]
+**Email:** [your.email@example.com]
+**Phone:** [123-456-7890]
+**LinkedIn:** [linkedin.com/in/yourprofile]
 
-skills : python, c++, java, pytorch, HTML, machine learning, data structures
-education: Btech in Electrical Engineering, ABC University, 2025
-experience: ML engineer intern, software engineer
+---
 
+**Education:**
+  
+....
+
+---
+
+**Skills:**
+
+
+---
+
+**Experience:**
+
+---
+
+Ensure the resume is realistic and includes hypothetical names for universities and companies, appropriate job titles, and example durations. Maintain this structure and formatting for consistency.
 """
 
-
-
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+def preprocess_text(text):
+    # Convert the text to lowercase
+    text = text.lower()
+    
+    # Remove punctuation from the text
+    text = re.sub('[^a-z]', ' ', text)
+    
+    # Remove numerical values from the text
+    text = re.sub(r'\d+', '', text)
+    
+    # Remove extra whitespaces
+    text = ' '.join(text.split())
+    
+    return text
 
 def get_score(resume, keywords):
+    resume, keywords = preprocess_text(resume),preprocess_text(keywords)
     text = [resume, keywords]
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(text)
@@ -79,7 +107,7 @@ if submit:
             scores.append((uploaded_file.name, score))
         
         sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
-        # st.subheader(response)
+        st.subheader(response)
 
         st.subheader("Ranking of Resumes:")
         for rank, (filename, score) in enumerate(sorted_scores, start=1):
