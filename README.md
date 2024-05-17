@@ -1,6 +1,9 @@
 # Resume Ranker
 
 This is a Streamlit application for ranking resumes based on their relevance to a provided job description.
+This application generates a sample resume based on the job description provided by the user. Based on the sample resume generated 
+by the LLM, the scores are calculated for the uploaded resumes by finding the similarities between them.
+The scores are then used to rank the resumes.
 
 ## Installation 
 
@@ -22,7 +25,7 @@ GOOGLE_API_KEY=your_api_key_here
 ## Usage
 1. Run the Streamlit application:
     ```bash
-    streamlit run app.py
+    streamlit run app1.py
 2. Input the job description text in the provided text area.
 
 3. Upload the resumes in PDF format using the file uploader.

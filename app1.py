@@ -6,7 +6,10 @@ from dotenv import load_dotenv
 import re
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b367298ce4ca7a1ceb58d1d39c021a5d86a928a
 
 load_dotenv()
 
@@ -62,6 +65,7 @@ Create an ideal resume for this job description. The resume should follow this e
 Ensure the resume is realistic and includes hypothetical names for universities and companies, appropriate job titles, and example durations. Maintain this structure and formatting for consistency.
 """
 
+<<<<<<< HEAD
 def preprocess_text(text):
     # Convert the text to lowercase
     text = text.lower()
@@ -77,6 +81,8 @@ def preprocess_text(text):
     
     return text
 
+=======
+>>>>>>> 2b367298ce4ca7a1ceb58d1d39c021a5d86a928a
 def get_score(resume, keywords):
     resume, keywords = preprocess_text(resume),preprocess_text(keywords)
     text = [resume, keywords]
@@ -107,8 +113,11 @@ if submit:
             scores.append((uploaded_file.name, score))
         
         sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
+<<<<<<< HEAD
         st.subheader(response)
 
+=======
+>>>>>>> 2b367298ce4ca7a1ceb58d1d39c021a5d86a928a
         st.subheader("Ranking of Resumes:")
         for rank, (filename, score) in enumerate(sorted_scores, start=1):
             st.write(f"{rank}. {filename} - Score: {score}")
